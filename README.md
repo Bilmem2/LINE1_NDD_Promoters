@@ -8,7 +8,7 @@
 
 ## Overview
 
-This repository contains all scripts, data processing pipelines, and the manuscript source for the study described above. We performed a genome-wide computational analysis comparing LINE-1 retrotransposon density in promoter regions (±2 kb from TSS) across five independently curated neurodevelopmental disorder (NDD) gene sets against a housekeeping gene control, using GRCh38/hg38 annotations.
+This repository contains all scripts, data processing pipelines, and the manuscript source for the study described above. A genome-wide computational analysis was performed comparing LINE-1 retrotransposon density in promoter regions (±2 kb from TSS) across five independently curated neurodevelopmental disorder (NDD) gene sets against a housekeeping gene control, using GRCh38/hg38 annotations.
 
 **Key finding:** NDD gene promoters are consistently depleted of LINE-1 elements relative to housekeeping gene promoters, with depletion magnitude scaling with phenotypic specificity (housekeeping > HPO Seizure > NDD Tier 1 > HPO ADHD ≈ Syndromic NDD > HPO Seizure∩ADHD).
 
