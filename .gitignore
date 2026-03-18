@@ -1,0 +1,32 @@
+# Large raw data files
+data/raw/
+data/*.bed
+data/*.gtf
+data/*.txt
+data/*.csv
+data/*.gz
+
+# Results (regeneratable)
+results/*.bed
+results/*.tsv
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+
+# LaTeX build artifacts
+manuscript/*.aux
+manuscript/*.log
+manuscript/*.out
+manuscript/*.toc
+manuscript/*.bbl
+manuscript/*.blg
+manuscript/*.synctex.gz
+manuscript/*.fls
+manuscript/*.fdb_latexmk
+
+# OS
+.DS_Store
+Thumbs.db
