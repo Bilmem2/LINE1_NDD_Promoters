@@ -24,6 +24,7 @@ LINE1_NDD_Promoters/
 ├── scripts/
 │   ├── 01_download_data.sh       # Download all raw data sources
 │   ├── 02_prepare_regions.sh     # Extract promoter and intron BED files
+│   ├── extract_introns.py        # Helper script called by 02 to calculate introns
 │   ├── 03_bedtools_intersect.sh  # LINE-1 intersection analysis
 │   ├── 04_gene_sets.py           # Gene set curation and overlap removal
 │   ├── 05_statistics.py          # Statistical tests and effect sizes
