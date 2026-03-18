@@ -108,7 +108,7 @@ python scripts/06_figures.py
 
 ## Citation
 
-> Sevilmiş C. (2026). LINE-1 Depletion in Promoters of Neurodevelopmental Disorder Genes: Evidence from Genome-Wide Analysis. *bioRxiv* [preprint]. doi: [to be assigned]
+> Sevilmiş C. (2026). LINE-1 Depletion in Promoters of Neurodevelopmental Disorder Genes: Evidence from Genome-Wide Analysis.
 
 ---
 
