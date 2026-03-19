@@ -29,6 +29,7 @@ LINE1_NDD_Promoters/
 │   ├── 04_gene_sets.py           # Gene set curation and overlap removal
 │   ├── 05_statistics.py          # Statistical tests and effect sizes
 │   └── 06_figures.py             # Generate all figures
+│   └── analyze_gc_cpg.py         # Supplementary: GC content and CpG O/E 
 ├── data/
 │   └── README.md            # Data sources and download instructions
 ├── figures/
