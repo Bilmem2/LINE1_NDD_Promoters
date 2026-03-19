@@ -49,10 +49,10 @@ print(f"  SFARI Tier1: {len(sfari_tier1)} genes")
 print(f"  SFARI Syndromic: {len(sfari_syndromic)} genes")
 
 # HPO gene lists
-hpo_seizure = pd.read_csv(RAW / "genes_for_HP_0001250.txt", sep="\t")
+hpo_seizure = pd.read_csv(RAW / "genes_for_HP_0001250.txt", sep=r"\s+")
 hpo_seizure_genes = set(hpo_seizure["name"].dropna())
 
-hpo_adhd = pd.read_csv(RAW / "genes_for_HP_0007018.txt", sep="\t")
+hpo_adhd = pd.read_csv(RAW / "genes_for_HP_0007018.txt", sep=r"\s+")
 hpo_adhd_genes = set(hpo_adhd["name"].dropna())
 
 seizure_adhd = hpo_seizure_genes & hpo_adhd_genes
@@ -62,7 +62,7 @@ print(f"  Seizure ∩ ADHD: {len(seizure_adhd)} genes")
 
 # HRT Atlas housekeeping genes
 hk_raw = pd.read_csv(RAW / "Housekeeping_GenesHuman.csv", sep=";")
-hk_genes_raw = set(hk_raw.iloc[:, 0].dropna())
+hk_genes_raw = set(hk_raw["Gene.name"].dropna())
 # Remove genes present in SFARI Tier2 to ensure independence
 hk_genes = hk_genes_raw - sfari_tier2
 print(f"  Housekeeping (after overlap removal): {len(hk_genes)} genes")
