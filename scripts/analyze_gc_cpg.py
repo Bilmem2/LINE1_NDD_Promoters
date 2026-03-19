@@ -74,30 +74,26 @@ seq_df = pd.DataFrame(rows)
 seq_df.to_csv(RESULTS / "promoter_gc_cpg_all.tsv", sep="\t", index=False)
 print(f"  Saved: results/promoter_gc_cpg_all.tsv")
 
-# ── 2. Load gene sets from existing BED files ────────────────────────────────
+# ── 2. Load gene sets from existing TSV files ────────────────────────────────
 
-print("\nLoading gene sets from BED files...")
+print("\nLoading gene sets from TSV files...")
 
-PROCESSED = Path("data/processed")
-
-def genes_from_bed(path):
-    """Extract gene names (column 4) from a BED file."""
-    df = pd.read_csv(path, sep="\t", header=None, usecols=[3], names=["gene"])
+def genes_from_tsv(path):
+    """Extract gene names from our result TSV files."""
+    df = pd.read_csv(path, sep="\t")
     return set(df["gene"].dropna())
 
-hk_genes     = genes_from_bed(PROCESSED / "promoters_hk.bed")
-sfari_tier1  = genes_from_bed(PROCESSED / "promoters_tier1.bed")
-hpo_seizure  = genes_from_bed(PROCESSED / "promoters_hpo_seizure.bed")
-hpo_adhd     = genes_from_bed(PROCESSED / "promoters_adhd.bed")
-seizure_adhd = genes_from_bed(PROCESSED / "promoters_overlap.bed")
+hk_genes     = genes_from_tsv(RESULTS / "promoter_counts_housekeeping.tsv")
+sfari_tier1  = genes_from_tsv(RESULTS / "promoter_counts_sfari_tier1.tsv")
+hpo_seizure  = genes_from_tsv(RESULTS / "promoter_counts_hpo_seizure.tsv")
+hpo_adhd     = genes_from_tsv(RESULTS / "promoter_counts_hpo_adhd.tsv")
+seizure_adhd = genes_from_tsv(RESULTS / "promoter_counts_seizure_adhd.tsv")
 
-# Syndromic NDD — check if separate BED exists, otherwise skip
-syndromic_bed = PROCESSED / "promoters_syndromic.bed"
-if syndromic_bed.exists():
-    sfari_syndromic = genes_from_bed(syndromic_bed)
+syndromic_tsv = RESULTS / "promoter_counts_sfari_syndromic.tsv"
+if syndromic_tsv.exists():
+    sfari_syndromic = genes_from_tsv(syndromic_tsv)
 else:
     sfari_syndromic = set()
-    print("  Note: promoters_syndromic.bed not found, skipping Syndromic NDD")
 
 gene_sets = {
     "Housekeeping":        hk_genes,
