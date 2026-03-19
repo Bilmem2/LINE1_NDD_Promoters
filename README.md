@@ -32,7 +32,7 @@ LINE1_NDD_Promoters/
 │   ├── 03_bedtools_intersect.sh  # LINE-1 intersection analysis
 │   ├── 04_gene_sets.py           # Gene set curation and overlap removal
 │   ├── 05_statistics.py          # Statistical tests and effect sizes
-│   └── 06_figures.py             # Generate all figures
+│   ├── 06_figures.py             # Generate all figures
 │   └── analyze_gc_cpg.py         # GC content and CpG O/E robustness analysis
 ├── data/
 │   └── README.md            # Data sources and download instructions
@@ -105,7 +105,7 @@ To run the nucleotide composition analysis, the human reference genome (hg38) is
 
 ```bash
 # Download hg38 reference genome
-wget -nc [https://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz](https://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz) -O data/raw/hg38.fa.gz
+wget -nc https://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz -O data/raw/hg38.fa.gz
 gunzip -k data/raw/hg38.fa.gz
 
 # Extract FASTA sequences and run analysis
