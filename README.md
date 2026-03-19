@@ -1,5 +1,7 @@
 # LINE-1 Depletion in Promoters of Neurodevelopmental Disorder Genes: Evidence from Genome-Wide Analysis
 
+> **Note:** This repository serves as the computational supplement for the Brief Report: *"LINE-1 Depletion in Promoters of Neurodevelopmental Disorder Genes: Evidence from Genome-Wide Analysis"*.
+
 **Author:** Can Sevilmiş  
 **Affiliation:** Department of Molecular Biology and Genetics, Bahçeşehir University, Istanbul, Turkey  
 **ORCID:** [0000-0002-9180-1924](https://orcid.org/0000-0002-9180-1924)
@@ -10,7 +12,9 @@
 
 This repository contains all scripts, data processing pipelines, and the manuscript source for the study described above. A genome-wide computational analysis was performed comparing LINE-1 retrotransposon density in promoter regions (±2 kb from TSS) across five independently curated neurodevelopmental disorder (NDD) gene sets against a housekeeping gene control, using GRCh38/hg38 annotations.
 
-**Key finding:** NDD gene promoters are consistently depleted of LINE-1 elements relative to housekeeping gene promoters, with depletion magnitude scaling with phenotypic specificity (housekeeping > HPO Seizure > NDD Tier 1 > HPO ADHD ≈ Syndromic NDD > HPO Seizure∩ADHD).
+**Key Findings:** * NDD gene promoters are consistently depleted of LINE-1 elements relative to housekeeping gene promoters (n=1,982). 
+* The magnitude of depletion tracks with phenotypic specificity (Housekeeping > HPO Seizure > NDD Tier 1 > Syndromic NDD > HPO ADHD > HPO Seizure ∩ ADHD).
+* **Robustness:** The depletion signal is maintained after controlling for intronic length differences (length-matched analysis: n=678 pairs, p=0.036). Furthermore, no significant differences in GC content (p=0.3289) or CpG density (p=0.9665) were detected between NDD Tier 1 and housekeeping promoters, indicating that the depletion is independent of primary sequence composition biases.
 
 ---
 
@@ -19,8 +23,8 @@ This repository contains all scripts, data processing pipelines, and the manuscr
 ```
 LINE1_NDD_Promoters/
 ├── manuscript/
-│   ├── main_v3-EN.tex       # LaTeX source (v3-EN)
-│   └── references.bib       # BibTeX reference file
+│   ├── main.tex          # LaTeX source
+│   └── references.bib    # BibTeX reference file
 ├── scripts/
 │   ├── 01_download_data.sh       # Download all raw data sources
 │   ├── 02_prepare_regions.sh     # Extract promoter and intron BED files
@@ -29,12 +33,13 @@ LINE1_NDD_Promoters/
 │   ├── 04_gene_sets.py           # Gene set curation and overlap removal
 │   ├── 05_statistics.py          # Statistical tests and effect sizes
 │   └── 06_figures.py             # Generate all figures
-│   └── analyze_gc_cpg.py         # Supplementary: GC content and CpG O/E 
+│   └── analyze_gc_cpg.py         # GC content and CpG O/E robustness analysis
 ├── data/
 │   └── README.md            # Data sources and download instructions
 ├── figures/
-│   ├── final_panel_v2.png   # Main figure (promoter occupancy + effect sizes)
-│   └── line1_silencing_diagram.png  # Conceptual model figure
+│   ├── final_panel_v2.png           # Main figure (promoter occupancy + effect sizes)
+│   ├── final_panel_v2.svg           # Vector version of the main figure
+│   └── line1_silencing_diagram.png  # Conceptual model diagram
 ├── results/
 │   └── README.md            # Description of result files
 ├── environment/
@@ -58,6 +63,7 @@ conda activate line1-ndd
 ```bash
 bash scripts/01_download_data.sh
 ```
+*Note: Some external databases (like HRT Atlas or HPO) may experience SSL certificate issues or link changes. If automated downloads fail, please check `data/README.md` for manual download instructions.*
 
 This will download:
 - UCSC RepeatMasker hg38 annotation (`rmsk.txt.gz`)
@@ -93,6 +99,20 @@ python scripts/05_statistics.py
 python scripts/06_figures.py
 ```
 
+### 7. Run sequence composition robustness analysis (GC/CpG)
+
+To run the nucleotide composition analysis, the human reference genome (hg38) is required.
+
+```bash
+# Download hg38 reference genome
+wget -nc [https://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz](https://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/hg38.fa.gz) -O data/raw/hg38.fa.gz
+gunzip -k data/raw/hg38.fa.gz
+
+# Extract FASTA sequences and run analysis
+bedtools getfasta -fi data/raw/hg38.fa -bed data/promoters_2kb_hg38.bed -nameOnly > data/processed/promoters_2kb.fa
+python scripts/analyze_gc_cpg.py
+```
+
 ---
 
 ## Data Sources
@@ -104,6 +124,7 @@ python scripts/06_figures.py
 | SFARI Gene | March 2026 | https://gene.sfari.org |
 | HPO | 2021 release | https://hpo.jax.org |
 | HRT Atlas | v1.0 | https://housekeeping.unicamp.br |
+| UCSC Reference Genome | hg38 | https://hgdownload.soe.ucsc.edu/goldenPath/hg38/bigZips/ |
 
 ---
 
