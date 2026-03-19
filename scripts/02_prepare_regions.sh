@@ -12,7 +12,9 @@ OUTDIR="data"
 
 echo "=== Extracting LINE-1 elements from RepeatMasker ==="
 awk 'NR > 1 && $12 == "LINE" && $13 == "L1" {
-    print $6 "\t" $7-1 "\t" $8 "\t" $13 "\t0\t" $10
+    start = $7 - 1
+    if (start < 0) start = 0
+    print $6 "\t" start "\t" $8 "\t" $13 "\t0\t" $10
 }' "$RMSK" \
 | sort -k1,1 -k2,2n \
 > "$OUTDIR/LINE1_hg38.bed"
