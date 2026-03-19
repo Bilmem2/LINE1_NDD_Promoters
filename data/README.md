@@ -8,22 +8,23 @@ This directory stores raw and processed data files. Most files are not tracked b
 |---|---|
 | `raw/rmsk.txt` | UCSC RepeatMasker annotation for hg38 (downloaded) |
 | `raw/gencode.v47.basic.annotation.gtf` | GENCODE v47 GTF (downloaded) |
+| `raw/hg38.fa.gz` | UCSC hg38 reference genome for GC/CpG analysis (downloaded) |
 | `raw/SFARI-Gene_genes_*.csv` | SFARI Gene list (manual download) |
 | `raw/genes_for_HP_0001250.txt` | HPO Seizure gene list (downloaded) |
 | `raw/genes_for_HP_0007018.txt` | HPO ADHD gene list (downloaded) |
 | `raw/Housekeeping_GenesHuman.csv` | HRT Atlas housekeeping genes (downloaded) |
-| `LINE1_hg38.bed` | Filtered LINE/L1 elements (1,031,524 entries) |
-| `promoters_2kb_hg38.bed` | ±2 kb TSS windows for all protein-coding genes |
-| `introns_hg38_sorted.bed` | Intronic intervals from all protein-coding transcripts |
+| `processed/LINE1_hg38.bed` | Filtered LINE/L1 elements (1,031,524 entries) |
+| `processed/promoters_2kb_hg38.bed` | ±2 kb TSS windows for all protein-coding genes |
+| `processed/introns_hg38_sorted.bed` | Intronic intervals from all protein-coding transcripts |
+| `processed/promoters_2kb.fa` | Extracted FASTA sequences for promoter windows |
 
-## Manual download required
+## Important Notes for Manual Downloads
 
-**SFARI Gene** does not support automated download.  
-Go to: https://gene.sfari.org/tools/  
-→ Download the gene list as CSV  
-→ Save to: `data/raw/SFARI-Gene_genes_<release>.csv`
+1. **SFARI Gene**: Does not support automated download.  
+   Go to: https://gene.sfari.org/tools/  
+   → Download the gene list as CSV  
+   → Save to: `data/raw/SFARI-Gene_genes_<release>.csv`
 
-## Notes
+2. **Housekeeping Genes (SSL Issue)**: The HRT Atlas server may occasionally have SSL certificate issues. If the automated script fails, use `wget --no-check-certificate` or download `Housekeeping_GenesHuman.csv` manually from https://housekeeping.unicamp.br.
 
-- All coordinates are GRCh38 / hg38
-- BED files are sorted by chromosome and start position (required for `bedtools intersect -sorted`)
+3. **HPO Database (404 Error)**: If the API links for the Seizure and ADHD gene sets return a `404 Not Found` error, download them manually from the HPO portal and place them in the `data/raw/` folder.
