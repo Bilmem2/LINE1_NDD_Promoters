@@ -1,6 +1,6 @@
-# Promoter-Specific Depletion of LINE-1 in Neurodevelopmental Disorder Genes
+# LINE-1 Depletion at Promoters of Neurodevelopmental Disorder Genes: A Genome-Wide Analysis
 
-> **Note:** This repository serves as the computational supplement for the Brief Report: *"Promoter-Specific Depletion of LINE-1 in Neurodevelopmental Disorder Genes"*.
+> **Note:** This repository serves as the computational supplement for the Brief Report: *"LINE-1 Depletion at Promoters of Neurodevelopmental Disorder Genes: A Genome-Wide Analysis"*.
 
 **Author:** Can Sevilmiş  
 **Affiliation:** Department of Molecular Biology and Genetics, Bahçeşehir University, Istanbul, Turkey  
