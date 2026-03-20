@@ -130,7 +130,7 @@ python scripts/analyze_gc_cpg.py
 
 ## Citation
 
-> Sevilmiş C. (2026). Promoter-Specific Depletion of LINE-1 in Neurodevelopmental Disorder Genes.
+> Sevilmiş C. (2026). LINE-1 Depletion at Promoters of Neurodevelopmental Disorder Genes: A Genome-Wide Analysis.
 
 ---
 
